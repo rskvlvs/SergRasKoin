@@ -1,0 +1,45 @@
+﻿@page
+@using SergRasKoin.Views.Home
+@model IndexModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>
+        Добро пожаловать!
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать на страницу продажи криптовалюты SergRasKoin!</h1>
+        <p>Здесь вы можете ознакомиться с информацией о продаже криптовалюты SergRasKoin.</p>
+        <p>Для начала просмотра доступных криптовалютных предложений перейдите по ссылке <a href="@Url.Action("Sales", "Manage")">Продажи SergRasKoin</a>.</p>
+    </div>
+</body>
+</html>
