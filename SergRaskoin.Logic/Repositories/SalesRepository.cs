@@ -15,12 +15,11 @@ namespace SergRaskoin.Logic.Repositories
 
         public Sales Create(DataContext context, Sales sales)
         {
-            sales.IsnNode = Guid.NewGuid();
+            //sales.IsnNode = Guid.NewGuid();
             context.Sale.Add(sales);
 
             return sales;
         }
-
         public Sales Update(DataContext context, Sales sales)
         {
             var salesDb = context.Sale.FirstOrDefault(x => x.IsnNode == sales.IsnNode)
@@ -39,7 +38,6 @@ namespace SergRaskoin.Logic.Repositories
             context.Sale.Remove(salesDb);
 
         }
-
         public Sales GetById(DataContext context, Guid isnNode)
         {
             var salesDb = context.Sale.AsNoTracking().FirstOrDefault(x => x.IsnNode == isnNode)

@@ -25,7 +25,7 @@ namespace SergRasKoin.Features.Managers
 			_dataContext = dataContext;
 		}
 
-		public void Create(EditUser editUser)
+		public Guid Create(EditUser editUser)
 		{
 			var user = new User()
 			{
@@ -36,6 +36,7 @@ namespace SergRasKoin.Features.Managers
 			};
 			_userRepository.Create(_dataContext, user);
 			_dataContext.SaveChanges();
+			return user.IsnNode;
 		}
 
 		public void Update(EditUser updateUser)

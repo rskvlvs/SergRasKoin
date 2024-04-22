@@ -31,6 +31,7 @@ namespace SergRasKoin.Features.Manager
             {
                 IsnNode = Guid.NewGuid(),
                 UserId = editSales.UserId ?? Guid.NewGuid(),
+                //UserId = _usId,
                 Count_Of_Coins = editSales.Count_Of_Coins,
             };
             _salesRepository.Create(_dataContext, sales);

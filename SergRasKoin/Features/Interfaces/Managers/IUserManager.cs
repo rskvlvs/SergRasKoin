@@ -5,7 +5,7 @@ namespace SergRasKoin.Features.Interfaces.Managers
 {
 	public interface IUserManager
 	{
-		void Create(EditUser editUser);
+		Guid Create(EditUser editUser);
 
 		void Update(EditUser updateUser);
 

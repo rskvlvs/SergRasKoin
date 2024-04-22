@@ -21,8 +21,10 @@ namespace SergRasKoin.Controllers
         [HttpGet(nameof(User), Name = nameof(User))]
         public async Task<ActionResult> User()
         {
-            var user = _userManager.GetListUser(new UserFilterDto()).FirstOrDefault();
-            return View(user);
+            //Какая-то ошибка при создании, тк передаю Dto во View, а надо Edit
+            //var user = _userManager.GetListUser(new UserFilterDto()).FirstOrDefault();
+            //return View(user);
+            return View();
         }
 
         [HttpGet(nameof(CreateUser))]
@@ -44,10 +46,14 @@ namespace SergRasKoin.Controllers
             if (!ModelState.IsValid)
                 return View(nameof(User), user);
 
-            _userManager.Create(user);
+            var usId = _userManager.Create(user);
             //return RedirectToAction(nameof(GetListUser));
-            //var usId = user.IsnNode; 
-            return RedirectToAction("Sales", "Manage");
+
+            //Так не сохраняет айдишник
+            return RedirectToAction("Sales", "Manage", new {usId});
+
+            //Пробую вызывать другую функцию (выдает ошибку при загрузке страницы
+            //return RedirectToAction(nameof(ManageController.CreateSalesView), "Manage", new { usId });
         }
 
         [HttpPut(nameof(DeleteUser), Name = nameof(DeleteUser))]

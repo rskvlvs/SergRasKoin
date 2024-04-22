@@ -12,16 +12,21 @@ namespace SergRasKoin.Controllers
 
         private readonly ISalesManager _salesManager;
 
+        private Guid _usId;
         public ManageController(ISalesManager salesManager) 
         { 
             _salesManager = salesManager;
         }
 
         [HttpGet(nameof(Sales), Name = nameof(Sales))]
-        public async Task<ActionResult> Sales()
+        public async Task<ActionResult> Sales(Guid usId) //Попытка сохранить пользовательский айди
         {
-            var sales = _salesManager.GetListSales(new SalesFilterDto()).FirstOrDefault(); 
-            return View(sales);
+            //Попытка сохранить пользовательский айди
+            var editSales = new EditSales { UserId = usId };
+            //Разобраться с этой передачей Dto во Views
+            //var sales = _salesManager.GetListSales(new SalesFilterDto()).FirstOrDefault(); 
+            //return View(sales);
+            return View(editSales);
         }
 
         [HttpGet(nameof(CreateSales))]
@@ -38,7 +43,7 @@ namespace SergRasKoin.Controllers
         }
 
 		[HttpPost(nameof(CreateSalesView), Name = nameof(CreateSalesView))]
-		public async Task<ActionResult> CreateSalesView(EditSales sales)
+		public async Task<ActionResult> CreateSalesView(EditSales sales) //Вторая попытка сохранить айдишник
 		{
 			if (!ModelState.IsValid)
 				return View(nameof(Sales), sales);
