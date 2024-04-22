@@ -29,8 +29,8 @@ namespace SergRasKoin.Features.Manager
         {
             var sales = new Sales()
             {
-                IsnNode = editSales.IsnNode,
-                UserId = editSales.UserId,
+                IsnNode = Guid.NewGuid(),
+                UserId = editSales.UserId ?? Guid.NewGuid(),
                 Count_Of_Coins = editSales.Count_Of_Coins,
             };
             _salesRepository.Create(_dataContext, sales);

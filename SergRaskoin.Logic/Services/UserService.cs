@@ -21,7 +21,6 @@ namespace SergRaskoin.Logic.Services
 			{
 				query = query.AsNoTracking();
 			}
-
 			return query; 
 		}
 	}

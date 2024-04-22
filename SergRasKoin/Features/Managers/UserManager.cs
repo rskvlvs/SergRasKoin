@@ -29,7 +29,7 @@ namespace SergRasKoin.Features.Managers
 		{
 			var user = new User()
 			{
-				IsnNode = editUser.IsnNode,
+				IsnNode = Guid.NewGuid(),
 				Name = editUser.Name,
 				Surname = editUser.Surname,
 				Email = editUser.Email,
@@ -57,7 +57,7 @@ namespace SergRasKoin.Features.Managers
 			return _mapper.Map<UserDto>(user);
 		}
 
-		public UserDto[] GetListSales(UserFilterDto filter)
+		public UserDto[] GetListUser(UserFilterDto filter)
 		{
 			var user = _userService.GetUserQueryable(_dataContext, filter, true)
 				.Select(x => new UserDto

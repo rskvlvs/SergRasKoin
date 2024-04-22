@@ -6,13 +6,11 @@ namespace SergRasKoin.Features.DtoModels.Sales
 {
     public sealed record EditSales
     {
-        [Key]
-        public Guid IsnNode { get; init; }
+        public Guid? IsnNode { get; init; }
 
+        public Guid? UserId { get; init; }
 
-        [ForeignKey(nameof(User))]
-        public Guid UserId { get; init; }
-
+        [Required]
         public long Count_Of_Coins { get; init; }
     }
 }

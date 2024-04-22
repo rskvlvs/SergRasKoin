@@ -11,7 +11,9 @@ namespace SergRasKoin.Extensions
         {
             services.AddLogicServices();
 
-            services.AddTransient<ISalesManager, SalesManager>(); 
+            services.AddTransient<ISalesManager, SalesManager>();
+
+            services.AddTransient<IUserManager, UserManager>();
         }
     }
 }

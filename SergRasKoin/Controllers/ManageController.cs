@@ -5,10 +5,13 @@ using SergRasKoin.Features.Interfaces.Managers;
 
 namespace SergRasKoin.Controllers
 {
-    [Route("Manage")]
+    [Route(Manage)]
     public class ManageController : Controller 
     {
+        public const string Manage = "Manage";
+
         private readonly ISalesManager _salesManager;
+
         public ManageController(ISalesManager salesManager) 
         { 
             _salesManager = salesManager;
@@ -21,11 +24,10 @@ namespace SergRasKoin.Controllers
             return View(sales);
         }
 
-        [HttpPost(nameof(CreateSales), Name = nameof(CreateSales))]
-        public async Task<ActionResult> CreateSales([FromBody]EditSales sales)
+        [HttpGet(nameof(CreateSales))]
+        public IActionResult CreateSales(Guid userId)
         {
-            _salesManager.Create(sales);
-            return Ok(); 
+            return View(new EditSales { UserId = userId }); 
         }
 
         [HttpPut(nameof(UpdateSales), Name = nameof(UpdateSales))]
@@ -34,14 +36,15 @@ namespace SergRasKoin.Controllers
             _salesManager.Update(sales);
             return Ok(); 
         }
+
 		[HttpPost(nameof(CreateSalesView), Name = nameof(CreateSalesView))]
-		public async Task<ActionResult> CreateSalesView([FromBody] EditSales sales)
+		public async Task<ActionResult> CreateSalesView(EditSales sales)
 		{
 			if (!ModelState.IsValid)
 				return View(nameof(Sales), sales);
 
 			_salesManager.Create(sales);
-			return View();
+			return RedirectToAction(nameof(GetListSales));
 		}
 
 		[HttpPut(nameof(DeleteSales), Name = nameof(DeleteSales))]
@@ -50,8 +53,6 @@ namespace SergRasKoin.Controllers
             _salesManager.Delete(isnNode);
             return Ok(); 
         }
-
-
 		[HttpGet(nameof(GetListSales), Name = nameof(GetListSales))]
 		public async Task<ActionResult> GetListSales()
 		{

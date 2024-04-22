@@ -14,7 +14,7 @@ namespace SergRaskoin.Logic.Repositories
     {
         public User Create(DataContext context, User user)
         {
-            user.IsnNode = Guid.NewGuid();
+            //user.IsnNode = Guid.NewGuid();
             context.Users.Add(user);
             return user;
         }

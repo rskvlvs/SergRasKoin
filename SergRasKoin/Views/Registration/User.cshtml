@@ -1,0 +1,23 @@
+﻿@using SergRasKoin.Controllers
+@using SergRasKoin.Features.DtoModels.User
+@model EditUser
+
+<h2>Регистрация</h2>
+
+@using (Html.BeginForm(nameof(RegistrationController.CreateUserView), RegistrationController.Registration, FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name, "Ваше имя: ")
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name)
+
+        @Html.LabelFor(x => x.Surname, "Ваша фамилия: ")
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Surname)
+
+        @Html.LabelFor(x => x.Email, "Ваш email: ")
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

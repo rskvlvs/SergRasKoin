@@ -13,7 +13,7 @@ namespace SergRasKoin.Features.Interfaces.Managers
 
 		UserDto GetUser(Guid isnNode);
 
-		UserDto[] GetListSales(UserFilterDto filter);
+		UserDto[] GetListUser(UserFilterDto filter);
 
 	}
 }

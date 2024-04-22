@@ -5,16 +5,9 @@ namespace SergRasKoin.Features.DtoModels.User
 {
 	public class UserDto
 	{
-		[Key]
-		public Guid IsnNode { get; init; }
-
-		[Required, MaxLength(255)]
-		public string Name { get; init; }
-
-		[Required, MaxLength(255)]
-		public string Surname { get; init; }
-
-		[Required, MaxLength(255)]
-		public string Email { get; init; }
-	}
+        public Guid IsnNode { get; init; }
+        public string Name { get; init; }
+        public string Surname { get; init; }
+        public string Email { get; init; }
+    }
 }

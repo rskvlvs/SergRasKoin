@@ -1,7 +1,17 @@
-﻿@using SergRasKoin.Features.DtoModels.Sales
+﻿@using SergRasKoin.Controllers
+@using SergRasKoin.Features.DtoModels.Sales
 @model EditSales
 
-<p>@Model?.IsnNode</p>
-<p>@Model?.Count_Of_Coins</p>
+<h2>Create Sales</h2>
+@using (Html.BeginForm(nameof(ManageController.CreateSalesView), ManageController.Manage, FormMethod.Post))
+{
 
-
+    @Html.HiddenFor(x => x.UserId)
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(x => x.Count_Of_Coins, "Count of Coins:")
+        @Html.TextBoxFor(x => x.Count_Of_Coins, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Count_Of_Coins)
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}

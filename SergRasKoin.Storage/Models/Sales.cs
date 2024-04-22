@@ -16,11 +16,10 @@ namespace SergRasKoin.Storage.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid IsnNode { get; set; }
 
-        
+        public long Count_Of_Coins { get; set; }
+
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
-
-        public long Count_Of_Coins { get; set; }
 
         public virtual User User { get; set; }
     }
