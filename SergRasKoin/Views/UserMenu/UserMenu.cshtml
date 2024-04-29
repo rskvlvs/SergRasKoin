@@ -1,0 +1,18 @@
+﻿@using SergRasKoin.Controllers
+@using SergRasKoin.Features.DtoModels.UserMenu
+@model MenuModel
+
+<h2>Меню пользователя</h2>
+
+@using (Html.BeginForm(nameof(UserMenuController.UserOperation), UserMenuController.UserMenu, FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.UserId)
+    @Html.ValidationSummary()
+    <div class="form-group">
+        <button type="submit" name="operation" value="К покупкам" class="btn btn-primary">К покупкам</button>
+        <button type="submit" name="operation" value="Баланс пользователя" class="btn btn-primary">Получить сумму коинов</button>
+    </div>
+}
+<footer>
+    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
+</footer>

@@ -2,8 +2,10 @@
 using SergRaskoin.Logic.DtoModels.Filters;
 using SergRaskoin.Logic.Interfaces.Repositories;
 using SergRaskoin.Logic.Interfaces.Services;
+using SergRaskoin.Logic.Repositories;
 using SergRaskoin.Logic.Services;
 using SergRasKoin.Features.DtoModels.Sales;
+using SergRasKoin.Features.DtoModels.User;
 using SergRasKoin.Features.Interfaces.Managers;
 using SergRasKoin.Storage.DataBase;
 using SergRasKoin.Storage.Models;
@@ -17,9 +19,9 @@ namespace SergRasKoin.Features.Manager
         private readonly ISalesService _salesService; 
         private readonly DataContext _dataContext;
 
-        public SalesManager(IMapper _mapper, ISalesRepository salesRepository, ISalesService salesService, DataContext dataContext)
+        public SalesManager(IMapper mapper, ISalesRepository salesRepository, ISalesService salesService, DataContext dataContext)
         {
-            _mapper = _mapper;
+            _mapper = mapper;
             _salesRepository = salesRepository;
             _salesService = salesService;
             _dataContext = dataContext;
@@ -27,10 +29,12 @@ namespace SergRasKoin.Features.Manager
 
         public void Create(EditSales editSales)
         {
+            if (!_dataContext.Users.Any(x => x.IsnNode == editSales.UserId))
+                throw new Exception($"Пользователь с Id {editSales.UserId} не найден!"); 
             var sales = new Sales()
             {
                 IsnNode = Guid.NewGuid(),
-                UserId = editSales.UserId ?? Guid.NewGuid(),
+                UserId = editSales.UserId.Value,
                 //UserId = _usId,
                 Count_Of_Coins = editSales.Count_Of_Coins,
             };
@@ -66,5 +70,10 @@ namespace SergRasKoin.Features.Manager
             return sales;
         }
 
+        public SalesDto GetSumById(Guid usId)
+        {
+            long sum = _salesRepository.GetSumSales(_dataContext, usId);
+            return (new SalesDto() { SumOfCoint = sum });
+        }
     }
 }

@@ -1,0 +1,19 @@
+﻿@using SergRasKoin.Controllers
+@using SergRasKoin.Features.DtoModels.Login
+@model LoginModel 
+
+<h2>Войти в аккаунт</h2>
+@using (Html.BeginForm(nameof(LoginController.FindUserAsync), LoginController.Login, FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div class="form-group">
+        @Html.LabelFor(x => x.email, "Введите ваш email:")
+        @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.email)
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+}
+<footer>
+    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
+</footer>
+

@@ -5,6 +5,7 @@ namespace SergRasKoin.Controllers
     [Route("")]
     public class HomeController : Controller 
     {
+        public const string Home = "Home";
         public HomeController() 
         { 
 

@@ -2,16 +2,22 @@
 @using SergRasKoin.Features.DtoModels.Sales
 @model EditSales
 
-<h2>Create Sales</h2>
-@using (Html.BeginForm(nameof(ManageController.CreateSalesView), ManageController.Manage, FormMethod.Post))
+<h2>Купить SergRaskoin</h2>
+@using (Html.BeginForm(nameof(ManageController.CreateSalesViewAsync), ManageController.Manage, FormMethod.Post))
 {
-
     @Html.HiddenFor(x => x.UserId)
     @Html.ValidationSummary()
     <div class="form-group">
-        @Html.LabelFor(x => x.Count_Of_Coins, "Count of Coins:")
+        @Html.LabelFor(x => x.Count_Of_Coins, "Введите количество нужных вам коинов:")
         @Html.TextBoxFor(x => x.Count_Of_Coins, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Count_Of_Coins)
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 }
+<footer>
+    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
+</footer>
+
+<footer>
+    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
+</footer>

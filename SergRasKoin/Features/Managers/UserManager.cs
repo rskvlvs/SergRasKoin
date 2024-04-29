@@ -17,9 +17,9 @@ namespace SergRasKoin.Features.Managers
 		private readonly IUserService _userService;
 		private readonly DataContext _dataContext;
 
-		public UserManager(IMapper _mapper, IUserRepository userRepository, IUserService userService, DataContext dataContext)
+		public UserManager(IMapper mapper, IUserRepository userRepository, IUserService userService, DataContext dataContext)
 		{
-			_mapper = _mapper;
+			_mapper = mapper;
 			_userRepository = userRepository;
 			_userService = userService;
 			_dataContext = dataContext;
@@ -58,6 +58,12 @@ namespace SergRasKoin.Features.Managers
 			return _mapper.Map<UserDto>(user);
 		}
 
+		public async Task<UserDto> GetUserByMail(string mail)
+		{
+			var user = await _userRepository.GetByMail(_dataContext, mail);
+			return _mapper.Map<UserDto>(user); 
+		}
+
 		public UserDto[] GetListUser(UserFilterDto filter)
 		{
 			var user = _userService.GetUserQueryable(_dataContext, filter, true)
@@ -71,5 +77,7 @@ namespace SergRasKoin.Features.Managers
 				.ToArray();
 			return user;
 		}
+
+
 	}
 }

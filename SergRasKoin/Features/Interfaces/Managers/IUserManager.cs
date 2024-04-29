@@ -13,7 +13,9 @@ namespace SergRasKoin.Features.Interfaces.Managers
 
 		UserDto GetUser(Guid isnNode);
 
-		UserDto[] GetListUser(UserFilterDto filter);
+		Task<UserDto> GetUserByMail(string mail);
+
+        UserDto[] GetListUser(UserFilterDto filter);
 
 	}
 }

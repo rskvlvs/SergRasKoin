@@ -8,8 +8,10 @@ namespace SergRasKoin.Features.Mappers
 	{
 		public UserMapper()
 		{
-			CreateMap<User, EditUser>();
-			CreateMap<EditUser, User>();
+			CreateMap<User, EditUser>().ReverseMap();
+			//CreateMap<EditUser, User>();
+
+			CreateMap<UserDto, User>().ReverseMap();
 		}
 	}
 }

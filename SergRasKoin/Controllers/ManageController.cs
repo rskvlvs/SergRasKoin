@@ -2,19 +2,20 @@
 using SergRaskoin.Logic.DtoModels.Filters;
 using SergRasKoin.Features.DtoModels.Sales;
 using SergRasKoin.Features.Interfaces.Managers;
+using SergRasKoin.Storage.Models;
 
 namespace SergRasKoin.Controllers
 {
     [Route(Manage)]
-    public class ManageController : Controller 
+    public class ManageController : Controller
     {
         public const string Manage = "Manage";
 
         private readonly ISalesManager _salesManager;
 
         private Guid _usId;
-        public ManageController(ISalesManager salesManager) 
-        { 
+        public ManageController(ISalesManager salesManager)
+        {
             _salesManager = salesManager;
         }
 
@@ -23,10 +24,13 @@ namespace SergRasKoin.Controllers
         {
             //Попытка сохранить пользовательский айди
             var editSales = new EditSales { UserId = usId };
-            //Разобраться с этой передачей Dto во Views
-            //var sales = _salesManager.GetListSales(new SalesFilterDto()).FirstOrDefault(); 
-            //return View(sales);
             return View(editSales);
+        }
+
+        [HttpGet(nameof(GetSumSales), Name = nameof(GetSumSales))]
+        public async Task<ActionResult> GetSumSales(SalesDto salesDto)
+        {
+            return View(salesDto);
         }
 
         [HttpGet(nameof(CreateSales))]
@@ -36,22 +40,22 @@ namespace SergRasKoin.Controllers
         }
 
         [HttpPut(nameof(UpdateSales), Name = nameof(UpdateSales))]
-        public async Task<ActionResult> UpdateSales([FromBody]EditSales sales)
+        public async Task<ActionResult> UpdateSales(EditSales sales)
         {
             _salesManager.Update(sales);
             return Ok(); 
         }
 
-		[HttpPost(nameof(CreateSalesView), Name = nameof(CreateSalesView))]
-		public async Task<ActionResult> CreateSalesView(EditSales sales) //Вторая попытка сохранить айдишник
+		[HttpPost(nameof(CreateSalesViewAsync), Name = nameof(CreateSalesViewAsync))]
+		public async Task<ActionResult> CreateSalesViewAsync(EditSales sales)
 		{
 			if (!ModelState.IsValid)
 				return View(nameof(Sales), sales);
 
 			_salesManager.Create(sales);
-			return RedirectToAction(nameof(GetListSales));
-		}
-
+            return RedirectToAction(nameof(UserMenuController.Menu), UserMenuController.UserMenu, new { usId = sales.UserId });
+            //return RedirectToAction(nameof(GetListSales));
+        }
 		[HttpPut(nameof(DeleteSales), Name = nameof(DeleteSales))]
         public async Task<ActionResult> DeleteSales([FromQuery]Guid isnNode)
         {
@@ -64,5 +68,20 @@ namespace SergRasKoin.Controllers
 			var sales = _salesManager.GetListSales(new SalesFilterDto());
 			return Ok(sales);
 		}
-	}
+
+        [HttpGet(nameof(GetSumSalesAsync), Name = nameof(GetSumSalesAsync))]
+        public async Task<ActionResult> GetSumSalesAsync(Guid usId)
+        {
+            try
+            {
+                var salesDto = _salesManager.GetSumById(usId);
+                return View(nameof(GetSumSales), salesDto);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(nameof(UserMenuController.Menu), usId);
+            }
+        }
+    }
 }

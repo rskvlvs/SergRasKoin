@@ -8,8 +8,10 @@ namespace SergRasKoin.Features.Mappers
     {
         public SalesMapper()
         {
-            CreateMap<Sales, EditSales>();
-            CreateMap<EditSales, Sales>();
+            CreateMap<Sales, EditSales>().ReverseMap();
+            //CreateMap<EditSales, Sales>();
+
+            CreateMap<SalesDto, Sales>().ReverseMap();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace SergRasKoin.Features.DtoModels.Sales
         public Guid UserId { get; init; }
 
         public long Count_Of_Coins { get; init; }
-
+        
+        public long SumOfCoint { get; set; }
     }
 }

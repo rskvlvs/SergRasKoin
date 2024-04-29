@@ -34,7 +34,7 @@ namespace SergRasKoin.Controllers
         }
 
         [HttpPut(nameof(UpdateUser), Name = nameof(UpdateUser))]
-        public async Task<ActionResult> UpdateUser([FromBody] EditUser user)
+        public async Task<ActionResult> UpdateUser(EditUser user)
         {
             _userManager.Update(user);
             return Ok();
@@ -45,15 +45,16 @@ namespace SergRasKoin.Controllers
         {
             if (!ModelState.IsValid)
                 return View(nameof(User), user);
-
-            var usId = _userManager.Create(user);
-            //return RedirectToAction(nameof(GetListUser));
-
-            //Так не сохраняет айдишник
-            return RedirectToAction("Sales", "Manage", new {usId});
-
-            //Пробую вызывать другую функцию (выдает ошибку при загрузке страницы
-            //return RedirectToAction(nameof(ManageController.CreateSalesView), "Manage", new { usId });
+            try
+            {
+                var usId = _userManager.Create(user);
+                return RedirectToAction(nameof(UserMenuController.Menu), UserMenuController.UserMenu, new { usId = usId });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(nameof(CreateUserView), user);
+            }
         }
 
         [HttpPut(nameof(DeleteUser), Name = nameof(DeleteUser))]

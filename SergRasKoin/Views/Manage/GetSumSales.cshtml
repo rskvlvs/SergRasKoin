@@ -1,0 +1,56 @@
+﻿@using SergRasKoin.Controllers
+@using SergRasKoin.Features.DtoModels.Sales
+@model SalesDto
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Баланс пользователя:<</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .sum-container {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .sum {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            color: #c00;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sum-container">
+        <h2>Баланс пользователя:</h2>
+        <p class="sum"> @Model.SumOfCoint</p>
+    </div>
+</body>
+</html>
+<footer>
+    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
+</footer>
+
+<footer>
+    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
+</footer>

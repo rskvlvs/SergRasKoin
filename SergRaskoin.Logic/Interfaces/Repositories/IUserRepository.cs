@@ -18,5 +18,7 @@ namespace SergRaskoin.Logic.Interfaces.Repositories
 
         User GetById(DataContext context, Guid isnNode);
 
+        Task<User> GetByMail(DataContext context, string mail);
+
     }
 }

@@ -14,5 +14,8 @@ namespace SergRasKoin.Features.Interfaces.Managers
 		SalesDto GetSales(Guid isnNode);
 
 		SalesDto[] GetListSales(SalesFilterDto filter);
-	}
+
+		SalesDto GetSumById(Guid usId);
+
+    }
 }

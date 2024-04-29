@@ -19,5 +19,8 @@
         @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Email)
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
 }
+<footer>
+    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
+</footer>

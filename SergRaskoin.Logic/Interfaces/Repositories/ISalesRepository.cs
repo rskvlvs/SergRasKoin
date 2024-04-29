@@ -17,5 +17,7 @@ namespace SergRaskoin.Logic.Interfaces.Repositories
         void Delete(DataContext context, Guid isnNode);
 
         Sales GetById(DataContext context, Guid isnNode);
+
+        long GetSumSales(DataContext context, Guid usId);
     }
 }
