@@ -41,13 +41,13 @@ namespace SergRasKoin.Features.Manager
             _salesRepository.Create(_dataContext, sales);
             _dataContext.SaveChanges();
         }
-        public void Update(EditSales updateSales)
-        {
-            var sales = _mapper.Map<Sales>(updateSales);
-            _salesRepository.Update(_dataContext, sales);
-            _dataContext.SaveChanges();
+        //public void Update(EditSales updateSales)
+        //{
+        //    var sales = _mapper.Map<Sales>(updateSales);
+        //    _salesRepository.Update(_dataContext, sales);
+        //    _dataContext.SaveChanges();
 
-        }
+        //}
         public void Delete(Guid isnNode)
         {
             _salesRepository.Delete(_dataContext, isnNode);
@@ -70,7 +70,7 @@ namespace SergRasKoin.Features.Manager
             return sales;
         }
 
-        public SalesDto GetSumById(Guid usId)
+        public SalesDto GetSumById(Guid? usId)
         {
             long sum = _salesRepository.GetSumSales(_dataContext, usId);
             return (new SalesDto() { SumOfCoint = sum });

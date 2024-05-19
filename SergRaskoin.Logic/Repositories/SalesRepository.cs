@@ -46,16 +46,25 @@ namespace SergRaskoin.Logic.Repositories
             return salesDb;
         }
 
-        public long GetSumSales(DataContext context, Guid usId)
+        public long GetSumSales(DataContext context, Guid? usId)
         {
             //var userDb = await context.Users.AsNoTracking().Include(m => m.Sale).FirstOrDefaultAsync(x => x.Email == mail)
             //    ?? throw new Exception($"Покупки пользователя не найдены");
             //return userDb;
             var userSales = context.Sale.Where(s => s.UserId == usId)
-                ?? throw new Exception($"Покупки пользователя не найдены");
+                ?? throw new Exception("Покупки пользователя не найдены");
 
             // Считаем сумму покупок пользователя
             long totalSalesAmount = userSales.Sum(s => s.Count_Of_Coins);
+
+            return totalSalesAmount;
+        }
+
+        public uint GetSumOfAllSales(DataContext context)
+        {
+            var Sales = context.Sale;
+
+            uint totalSalesAmount = (uint)(Sales.Sum(x => x.Count_Of_Coins));
 
             return totalSalesAmount;
         }

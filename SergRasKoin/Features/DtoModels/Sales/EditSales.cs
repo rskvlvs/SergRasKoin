@@ -1,6 +1,7 @@
 ﻿using SergRasKoin.Storage.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using SergRasKoin.Features.Attributes;
 
 namespace SergRasKoin.Features.DtoModels.Sales
 {
@@ -10,7 +11,8 @@ namespace SergRasKoin.Features.DtoModels.Sales
 
         public Guid? UserId { get; init; }
 
-        [Required]
+        //[Required, NoLetter]
+        [Required, OnlyDigits]
         public long Count_Of_Coins { get; init; }
     }
 }

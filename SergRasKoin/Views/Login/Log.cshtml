@@ -1,19 +1,100 @@
 ﻿@using SergRasKoin.Controllers
 @using SergRasKoin.Features.DtoModels.Login
-@model LoginModel 
+@model LoginModel
 
-<h2>Войти в аккаунт</h2>
-@using (Html.BeginForm(nameof(LoginController.FindUserAsync), LoginController.Login, FormMethod.Post))
-{
-    @Html.ValidationSummary(true)
-    <div class="form-group">
-        @Html.LabelFor(x => x.email, "Введите ваш email:")
-        @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.email)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Войти в аккаунт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+            .btn-primary:hover {
+                background-color: #23272b;
+            }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            footer a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Войти в аккаунт</h2>
+        @using (Html.BeginForm(nameof(LoginController.FindUserAsync), LoginController.Login, FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(x => x.email, "Введите ваш email:")
+                @Html.TextBoxFor(x => x.email)
+                @Html.ValidationMessageFor(x => x.email)
+            </div>
+            <button type="submit" class="btn btn-primary">Войти</button>
+        }
     </div>
-    <button type="submit" class="btn btn-primary">Войти</button>
-}
-<footer>
-    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
-</footer>
-
+    <footer>
+        <a href="@Url.Action(nameof(HomeController.Index), "Home")" class="btn btn-primary">На главную</a>
+    </footer>
+</body>
+</html>

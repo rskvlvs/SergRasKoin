@@ -2,17 +2,84 @@
 @using SergRasKoin.Features.DtoModels.UserMenu
 @model MenuModel
 
-<h2>Меню пользователя</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Меню пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
 
-@using (Html.BeginForm(nameof(UserMenuController.UserOperation), UserMenuController.UserMenu, FormMethod.Post))
-{
-    @Html.HiddenFor(x => x.UserId)
-    @Html.ValidationSummary()
-    <div class="form-group">
-        <button type="submit" name="operation" value="К покупкам" class="btn btn-primary">К покупкам</button>
-        <button type="submit" name="operation" value="Баланс пользователя" class="btn btn-primary">Получить сумму коинов</button>
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #343a40;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn-primary:hover {
+                background-color: #23272b;
+            }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            footer a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="form-containЦer">
+        <h2>Здравствуйте, @Model.UserName @Model.UserSurname!</h2>
+        <h2>Меню пользователя</h2>
+        @using (Html.BeginForm(nameof(UserMenuController.UserOperation), UserMenuController.UserMenu, FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.UserId)
+            @Html.ValidationSummary()
+            <div class="form-group">
+                <button type="submit" name="operation" value="К покупкам" class="btn btn-primary">    К покупкам    </button>
+                <button type="submit" name="operation" value="Баланс пользователя" class="btn btn-primary">Баланс пользователя</button>
+                <button type="submit" name="operation" value="Продать SergRaskoin" class="btn btn-primary">Продать SergRaskoin</button>
+            </div>
+        }
     </div>
-}
-<footer>
-    <a href="@Url.Action(nameof(HomeController.Index), "Home")">На главную</a>
-</footer>
+    <footer>
+        <a href="@Url.Action(nameof(HomeController.Index), "Home")" class="btn btn-primary">На главную</a>
+    </footer>
+</body>
+</html>

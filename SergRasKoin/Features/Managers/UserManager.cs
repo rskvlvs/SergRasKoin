@@ -51,8 +51,9 @@ namespace SergRasKoin.Features.Managers
 			_userRepository.Delete(_dataContext, isnNode);
 		}
 
-		public UserDto GetUser(Guid isnNode)
+		public UserDto GetUser(Guid? isnNode)
 		{
+			if(isnNode ==  null) throw(new ArgumentNullException(nameof(isnNode)));
 			var user = _userRepository.GetById(_dataContext, isnNode);
 
 			return _mapper.Map<UserDto>(user);
@@ -61,7 +62,7 @@ namespace SergRasKoin.Features.Managers
 		public async Task<UserDto> GetUserByMail(string mail)
 		{
 			var user = await _userRepository.GetByMail(_dataContext, mail);
-			return _mapper.Map<UserDto>(user); 
+            return _mapper.Map<UserDto>(user);
 		}
 
 		public UserDto[] GetListUser(UserFilterDto filter)

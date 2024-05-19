@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SergRasKoin.Features.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace SergRasKoin.Features.DtoModels.User
 {
@@ -6,13 +7,15 @@ namespace SergRasKoin.Features.DtoModels.User
 	{
 		public Guid? IsnNode { get; init; }
 
-		[Required]
-		public string Name { get; init; }
+        //[Required, NoDigit]
+        [Required, OnlyLetter]
+        public string Name { get; init; }
 
-		[Required]
-		public string Surname { get; init; }
+        //[Required, NoDigit]
+        [Required, OnlyLetter]
+        public string Surname { get; init; }
 
-		[Required]
+		[Required, CorrectEmail]
 		public string Email { get; init; }
 	}
 }

@@ -16,7 +16,7 @@ namespace SergRaskoin.Logic.Interfaces.Repositories
 
         void Delete(DataContext context, Guid isnNode);
 
-        User GetById(DataContext context, Guid isnNode);
+        User GetById(DataContext context, Guid? isnNode);
 
         Task<User> GetByMail(DataContext context, string mail);
 

@@ -20,35 +20,35 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddWevServices();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-	c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Example", Version = "v1" });
-	c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+//builder.Services.AddSwaggerGen(c =>
+//{
+//	c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Example", Version = "v1" });
+//	c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
-	foreach (FileInfo file in new DirectoryInfo(AppContext.BaseDirectory).GetFiles(
-				 Assembly.GetExecutingAssembly().GetName().Name! + ".xml"))
-		c.IncludeXmlComments(file.FullName);
+//	foreach (FileInfo file in new DirectoryInfo(AppContext.BaseDirectory).GetFiles(
+//				 Assembly.GetExecutingAssembly().GetName().Name! + ".xml"))
+//		c.IncludeXmlComments(file.FullName);
 
-	c.EnableAnnotations(enableAnnotationsForInheritance: true,
-		enableAnnotationsForPolymorphism: true
-	);
-});
+//	c.EnableAnnotations(enableAnnotationsForInheritance: true,
+//		enableAnnotationsForPolymorphism: true
+//	);
+//});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-	app.UseHsts();
+//if (!app.Environment.IsDevelopment())
+//{
+//	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+//	app.UseHsts();
 
-	app.UseSwagger();
-	app.UseSwaggerUI(options =>
-	{
-		options.SwaggerEndpoint("/swagger/v1/swagger.json", "Example");
-		options.EnableDeepLinking();
-	});
-}
+//	app.UseSwagger();
+//	app.UseSwaggerUI(options =>
+//	{
+//		options.SwaggerEndpoint("/swagger/v1/swagger.json", "Example");
+//		options.EnableDeepLinking();
+//	});
+//}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

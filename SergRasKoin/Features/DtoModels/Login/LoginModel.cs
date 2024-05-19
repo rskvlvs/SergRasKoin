@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SergRasKoin.Features.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace SergRasKoin.Features.DtoModels.Login
 {

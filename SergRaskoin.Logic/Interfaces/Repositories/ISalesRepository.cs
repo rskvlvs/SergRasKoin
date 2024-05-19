@@ -18,6 +18,8 @@ namespace SergRaskoin.Logic.Interfaces.Repositories
 
         Sales GetById(DataContext context, Guid isnNode);
 
-        long GetSumSales(DataContext context, Guid usId);
+        long GetSumSales(DataContext context, Guid? usId);
+
+        uint GetSumOfAllSales(DataContext context);
     }
 }

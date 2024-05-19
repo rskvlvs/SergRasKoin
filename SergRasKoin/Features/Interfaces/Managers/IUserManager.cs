@@ -11,7 +11,7 @@ namespace SergRasKoin.Features.Interfaces.Managers
 
 		void Delete(Guid isnNode);
 
-		UserDto GetUser(Guid isnNode);
+		UserDto GetUser(Guid? isnNode);
 
 		Task<UserDto> GetUserByMail(string mail);
 

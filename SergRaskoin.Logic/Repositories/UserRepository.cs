@@ -40,7 +40,7 @@ namespace SergRaskoin.Logic.Repositories
 
         }
 
-        public User GetById(DataContext context, Guid isnNode)
+        public User GetById(DataContext context, Guid? isnNode)
         {
             var userDb = context.Users.AsNoTracking().FirstOrDefault(x => x.IsnNode == isnNode)
                 ?? throw new Exception($"Пользователь с идентификатором {isnNode} не найден");
@@ -50,8 +50,7 @@ namespace SergRaskoin.Logic.Repositories
 
         public async Task<User> GetByMail(DataContext context, string mail)
         {
-            var userDb = await context.Users.AsNoTracking().Include(m => m.Sale).FirstOrDefaultAsync(x => x.Email == mail)
-                ?? throw new Exception($"Пользователь с email {mail} не найден");
+            var userDb = await context.Users.AsNoTracking().Include(m => m.Sale).FirstOrDefaultAsync(x => x.Email == mail);
             return userDb;
         }
 

@@ -17,5 +17,7 @@ namespace SergRasKoin.Storage.DataBase
         public virtual DbSet<Sales> Sale { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<Course> Courses { get; set; }
     }
 }

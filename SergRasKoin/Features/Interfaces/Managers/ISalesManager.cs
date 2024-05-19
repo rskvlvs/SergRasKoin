@@ -7,7 +7,7 @@ namespace SergRasKoin.Features.Interfaces.Managers
     {
 		void Create(EditSales editSales);
 
-		void Update(EditSales updateSales);
+		//void Update(EditSales updateSales);
 
 		void Delete(Guid isnNode);
 
@@ -15,7 +15,7 @@ namespace SergRasKoin.Features.Interfaces.Managers
 
 		SalesDto[] GetListSales(SalesFilterDto filter);
 
-		SalesDto GetSumById(Guid usId);
+		SalesDto GetSumById(Guid? usId);
 
     }
 }
