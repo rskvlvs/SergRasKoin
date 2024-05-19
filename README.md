@@ -1,1 +1,1 @@
-# SergRasKoin
+# SergRasKoin - реализация сайта с продажами криптовалюты SergRaskoin. Разработка выполнялась схемой MVC 
