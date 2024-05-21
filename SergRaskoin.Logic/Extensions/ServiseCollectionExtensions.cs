@@ -21,6 +21,9 @@ namespace SergRaskoin.Logic.Extensions
             services.AddSingleton<ISalesRepository, SalesRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
 
+            services.AddSingleton<ICourseRepository, CourseRepository>(); 
+            services.AddSingleton<ICourseService, CourseService>();
+
         }
     }
 }

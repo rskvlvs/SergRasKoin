@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace SergRasKoin.Features.DtoModels.Course
 {
@@ -7,8 +8,8 @@ namespace SergRasKoin.Features.DtoModels.Course
     {
         public Guid? Isnnode { get; init; }
 
-        public uint? course { get; init; }
+        public double? course { get; init; }
 
-        public string? dateTime { get; init; }
+        public DateTime? dateTime { get; init; }
     }
 }

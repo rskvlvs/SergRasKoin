@@ -13,8 +13,8 @@ namespace SergRasKoin.Storage.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)] 
         public Guid Isnnode { get; set; }
 
-        public uint course {  get; set; }
+        public double course {  get; set; }
 
-        public string dateTime { get; set; }
+        public DateTime dateTime { get; set; }
     }
 }

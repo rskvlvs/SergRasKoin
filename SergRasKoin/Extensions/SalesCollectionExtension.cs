@@ -7,13 +7,15 @@ namespace SergRasKoin.Extensions
 {
     public static class SalesCollectionExtension
     {
-        public static void AddWevServices(this IServiceCollection services)
+        public static void AddWebServices(this IServiceCollection services)
         {
             services.AddLogicServices();
 
             services.AddTransient<ISalesManager, SalesManager>();
 
             services.AddTransient<IUserManager, UserManager>();
+
+            services.AddTransient<ICourseManager, CourseManager>();
         }
     }
 }

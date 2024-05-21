@@ -8,8 +8,8 @@ namespace SergRaskoin.Logic.DtoModels.Filters
 {
     public sealed record CourseFilterDto
     {
-        public uint course { get; set; }
+        public double course { get; set; }
 
-        public string dateTime { get; set; }
+        public DateTime dateTime { get; set; }
     }
 }

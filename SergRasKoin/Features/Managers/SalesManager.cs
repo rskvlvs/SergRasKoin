@@ -19,12 +19,14 @@ namespace SergRasKoin.Features.Manager
         private readonly ISalesService _salesService; 
         private readonly DataContext _dataContext;
 
+
         public SalesManager(IMapper mapper, ISalesRepository salesRepository, ISalesService salesService, DataContext dataContext)
         {
             _mapper = mapper;
             _salesRepository = salesRepository;
             _salesService = salesService;
             _dataContext = dataContext;
+
         }
 
         public void Create(EditSales editSales)
@@ -40,6 +42,7 @@ namespace SergRasKoin.Features.Manager
             };
             _salesRepository.Create(_dataContext, sales);
             _dataContext.SaveChanges();
+
         }
         //public void Update(EditSales updateSales)
         //{

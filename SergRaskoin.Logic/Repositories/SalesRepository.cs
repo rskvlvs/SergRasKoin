@@ -60,13 +60,5 @@ namespace SergRaskoin.Logic.Repositories
             return totalSalesAmount;
         }
 
-        public uint GetSumOfAllSales(DataContext context)
-        {
-            var Sales = context.Sale;
-
-            uint totalSalesAmount = (uint)(Sales.Sum(x => x.Count_Of_Coins));
-
-            return totalSalesAmount;
-        }
     }
 }

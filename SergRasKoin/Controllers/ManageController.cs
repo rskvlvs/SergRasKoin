@@ -4,6 +4,7 @@ using SergRaskoin.Logic.DtoModels.Filters;
 using SergRaskoin.Logic.Interfaces.Repositories;
 using SergRasKoin.Features.DtoModels.Sales;
 using SergRasKoin.Features.Interfaces.Managers;
+using SergRasKoin.Features.Managers;
 using SergRasKoin.Storage.Models;
 
 namespace SergRasKoin.Controllers
@@ -17,11 +18,14 @@ namespace SergRasKoin.Controllers
 
         private readonly IUserManager _userManager;
 
+        private readonly ICourseManager _courseManager; 
+
         private Guid _usId;
-        public ManageController(ISalesManager salesManager, IUserManager userManager)
+        public ManageController(ISalesManager salesManager, IUserManager userManager, ICourseManager courseManager)
         {
             _salesManager = salesManager;
             _userManager = userManager;
+            _courseManager = courseManager;
         }
         
         //Для адекватного вывода страницы. Сохраняю айди пользователя, закидывая значения в модельку
@@ -38,22 +42,13 @@ namespace SergRasKoin.Controllers
         public async Task<ActionResult> GetSumSales(SalesDto salesDto)
         {
             return View(salesDto);
-        }
-
-        
+        }        
         //[HttpGet(nameof(CreateSales))]
         //public IActionResult CreateSales(Guid userId)
         //{
         //    return View(new EditSales { UserId = userId }); 
         //}
 
-        //Мне не нужно обновление продаж, так как каждая покупка пользователя идет в отдельную строчку
-        //[HttpPut(nameof(UpdateSales), Name = nameof(UpdateSales))]
-        //public async Task<ActionResult> UpdateSales(EditSales sales)
-        //{
-        //    _salesManager.Update(sales);
-        //    return Ok(); 
-        //}
 
         //Здесь метод для покупки пользователем коинов. Создаю продажу, перехожу на юзер меню.
 		[HttpPost(nameof(CreateSalesViewAsync), Name = nameof(CreateSalesViewAsync))]
@@ -63,18 +58,12 @@ namespace SergRasKoin.Controllers
 				return View(nameof(Sales), sales);
 
 			_salesManager.Create(sales);
+            _courseManager.UpdateCourse(); // Обновление курса
             var user = _userManager.GetUser(sales.UserId);
             return RedirectToAction(nameof(UserMenuController.Menu), UserMenuController.UserMenu, new { usId = sales.UserId, name = user.Name, surname = user.Surname });
             //return RedirectToAction(nameof(GetListSales));
         }
 
-        //Возвращает лист продаж
-		[HttpGet(nameof(GetListSales), Name = nameof(GetListSales))]
-		public async Task<ActionResult> GetListSales()
-		{
-			var sales = _salesManager.GetListSales(new SalesFilterDto());
-			return Ok(sales);
-		}
 
         //Эта функция для страницы с балансом пользователя.
         [HttpGet(nameof(GetSumSalesAsync), Name = nameof(GetSumSalesAsync))]
@@ -112,6 +101,7 @@ namespace SergRasKoin.Controllers
             }
 
             _salesManager.Create(new EditSales() { IsnNode = sales.IsnNode, Count_Of_Coins = sales.Count_Of_Coins * (-1), UserId = sales.UserId});
+            _courseManager.UpdateCourse(); // Обновление курса
             var user = _userManager.GetUser(sales.UserId);
             return RedirectToAction(nameof(UserMenuController.Menu), UserMenuController.UserMenu, new { usId = sales.UserId, name = user.Name, surname = user.Surname });
         }

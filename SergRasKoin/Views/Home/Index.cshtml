@@ -1,6 +1,5 @@
-﻿@page
-@using SergRasKoin.Views.Home
-@model IndexModel
+﻿@using SergRasKoin.Features.DtoModels.Home
+@model HomeModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +66,7 @@
 <body>
     <div class="container">
         <h1>Добро пожаловать на страницу продажи криптовалюты SergRasKoin!</h1>
-        <h2>Текущий курс: 1 SergRasKoin = 569.49 Fantiks</h2>
+        <h2>Текущий курс: 1 SergRasKoin = @Model.course Fantiks</h2>
         <p>SergRasKoin - перспективная криптовалюта, которая со старта продаж пользуется популярностью в широких кругах. Становись частью большого сообщества - покупай SergRasKoin.</p>
         <div class="button-container">
             <a href="@Url.Action("User", "Registration")">Регистрация</a>
